@@ -1,1 +1,32 @@
-<p>settings-component works!</p>
+<div class="settings-container">
+  <h1>Settings Page</h1>
+
+
+  <div class="setting-group">
+    <label>Number of questions?</label>
+    <input type="number" placeholder="Max: 50" />
+    <button class="confirm-btn" (click)="confirmQuestions()">Confirm</button>
+  </div>
+
+  <div class="setting-group">
+    <label>Difficulty of questions:</label>
+    <input type="text" placeholder="ex: Easy/Medium/Hard" />
+    <button class="confirm-btn" (click)="confirmDifficulty()">Confirm</button>
+  </div>
+
+
+  <div class="setting-group">
+    <label>Music?</label>
+    <button class="toggle-btn">Enable/Disable</button>
+  </div>
+
+  <div class="setting-group">
+    <label>Sound?</label>
+    <button class="toggle-btn">Enable/Disable</button>
+  </div>
+
+  <div class="bottom-buttons">
+    <button (click) = "toHome()" class="nav-btn">Home</button>
+    <button  (click) = "toLeaderboard()"class="nav-btn">Leaderboard</button>
+  </div>
+</div>

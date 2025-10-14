@@ -10,10 +10,28 @@ export class QuizService {
   public currentQuestions: any[] = [];
 
   constructor (private http: HttpClient) {};
+  private numQuestions: number = 10; //default value
+  private difficulty: string = "easy" //default value
 
-  getQuestions(amount:number,  difficulty: string): Observable<any> {
+  getQuestions(amount:number,  difficulty?: string): Observable<any> {
      let url = `${this.baseUrl}amount=${amount}&difficulty=${difficulty}&type=multiple`;
       return this.http.get(url)
+  }
+
+  setNumQuestions(num: number): void {
+    this.numQuestions = num;
+  }
+
+  getNumQuestions(): number {
+    return this.numQuestions;
+  }
+
+  setDifficulty(dif: string): void  {
+    this.difficulty = dif;
+  }
+
+  getDifficulty(): string {
+    return this.difficulty;
   }
 
 }

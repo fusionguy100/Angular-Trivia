@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-component',
@@ -8,8 +9,17 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  onSubmit() {
-    console.log("Heading to settings page")
+    constructor(private router: Router) {}
+
+
+  toSettings() {
+  //  console.log("Heading to settings page")
+    this.router.navigate(['/settings'])
   }
+
+  toLeaderboard() {
+    this.router.navigate(['/leaderboard'])
+  }
+
 
 }

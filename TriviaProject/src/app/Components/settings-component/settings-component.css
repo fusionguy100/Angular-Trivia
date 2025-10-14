@@ -1,0 +1,60 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100vh;
+  background-color: white;
+  text-align: center;
+  padding-top: 40px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+label {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+input {
+  width: 200px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.confirm-btn,
+.toggle-btn,
+.nav-btn {
+  background-color: lightgray;
+  border: none;
+  padding: 10px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  position: absolute;
+  bottom: 30px;
+}
+
+.nav-btn {
+  width: 180px;
+}
