@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../Services/quiz-service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-settings-component',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './settings-component.html',
   styleUrl: './settings-component.css'
 })
@@ -25,22 +26,26 @@ toLeaderboard() {
 }
 
 confirmQuestions() {
-  if(this.numQuestions && this.numQuestions > 0) {
-    this.quizService.setNumQuestions(this.numQuestions)
-    alert(`Number of questions set to ${this.numQuestions}`)
+  const amount = Number(this.numQuestions);
+
+  if (amount > 0 && amount <= 50) {
+    this.quizService.setNumQuestions(amount);
+    alert(`Number of questions set to ${amount}`);
   } else {
-    alert('Please enter a valid number of questions.')
+    alert('Please enter a valid number of questions (1–50).');
   }
 }
 
+  confirmDifficulty() {
+    const valid = ['easy', 'medium', 'hard'];
+    const diff = this.difficulty.toLowerCase();
 
-confirmDifficulty(){
- if(this.difficulty) {
-  this.quizService.setDifficulty(this.difficulty.toLowerCase());
-  alert(`Difficulty set to ${this.difficulty}`)
- } else {
-  alert('Please enter a difficulty (easy, medium, or hard). ')
- }
-}
+    if (valid.includes(diff)) {
+      this.quizService.setDifficulty(diff);
+      alert(`Difficulty set to ${diff}`);
+    } else {
+      alert('Please select: easy, medium, or hard.');
+    }
+  }
 
 }

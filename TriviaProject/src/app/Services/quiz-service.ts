@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { NgModel } from '@angular/forms';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class QuizService {
   private baseUrl = 'https://opentdb.com/api.php?'
@@ -31,7 +32,7 @@ export class QuizService {
   }
 
   getDifficulty(): string {
-    return this.difficulty;
+  return this.difficulty;
   }
 
 }
