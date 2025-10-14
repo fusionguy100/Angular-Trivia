@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  onSubmit() {
+    console.log("Heading to settings page")
+  }
+
 }
