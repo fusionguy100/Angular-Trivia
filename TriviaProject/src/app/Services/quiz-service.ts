@@ -14,6 +14,13 @@ export class QuizService {
   private numQuestions: number = 10; //default value
   private difficulty: string = "easy" //default value
 
+
+  //audio settings
+  public musicEnabled = false;
+  public soundEnabled = false;
+
+
+
   getQuestions(amount:number,  difficulty?: string): Observable<any> {
      let url = `${this.baseUrl}amount=${amount}&difficulty=${difficulty}&type=multiple`;
       return this.http.get(url)
@@ -35,4 +42,10 @@ export class QuizService {
   return this.difficulty;
   }
 
+  toggleMusic() {
+    //skeleton
+  }
+  toggleSound(){
+    //skeleton
+  }
 }

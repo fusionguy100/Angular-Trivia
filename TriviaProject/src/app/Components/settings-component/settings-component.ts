@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 
 export class SettingsComponent {
 
-  constructor(private router: Router, private quizService: QuizService) {}
+  constructor(private router: Router, public quizService: QuizService) {}
 
   numQuestions: number | null = null;
   difficulty: string = '';
@@ -47,5 +47,16 @@ confirmQuestions() {
       alert('Please select: easy, medium, or hard.');
     }
   }
+
+  toggleMusic() {
+  this.quizService.toggleMusic();
+  alert(`Music ${this.quizService.musicEnabled ? 'enabled' : 'disabled'}`);
+}
+
+toggleSound() {
+  this.quizService.toggleSound();
+  alert(`Sound ${this.quizService.soundEnabled ? 'enabled' : 'disabled'}`);
+}
+
 
 }
