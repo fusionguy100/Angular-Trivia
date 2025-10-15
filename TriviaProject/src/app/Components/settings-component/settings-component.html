@@ -1,44 +1,45 @@
 <div class="settings-container">
   <h1>Settings Page</h1>
-  <div class="setting-group">
-  <label>Number of questions?</label>
-  <input
-    type="number"
-    [(ngModel)]="numQuestions"
-    placeholder="Max: 50"
-    min="1"
-    max="50"
-  />
-  <button class="confirm-btn" (click)="confirmQuestions()">Confirm</button>
-</div>
-
- <div class="setting-group">
-  <label>Difficulty of questions:</label>
-  <select [(ngModel)]="difficulty">
-    <option value="">Select difficulty</option>
-    <option value="easy">Easy</option>
-    <option value="medium">Medium</option>
-    <option value="hard">Hard</option>
-  </select>
-  <button class="confirm-btn" (click)="confirmDifficulty()">Confirm</button>
-</div>
 
   <div class="setting-group">
-  <label>Music?</label>
-  <button class="toggle-btn" (click)="toggleMusic()">
-    {{ quizService.musicEnabled ? 'Disable' : 'Enable' }}
-  </button>
-</div>
+    <label>Number of questions?</label>
+    <input
+      type="number"
+      [(ngModel)]="numQuestions"
+      placeholder="Max: 50"
+      min="1"
+      max="50"
+    />
+    <button class="confirm-btn" (click)="quizService.playButton(); confirmQuestions()">Confirm</button>
+  </div>
 
-<div class="setting-group">
-  <label>Sound?</label>
-  <button class="toggle-btn" (click)="toggleSound()">
-    {{ quizService.soundEnabled ? 'Disable' : 'Enable' }}
-  </button>
-</div>
+  <div class="setting-group">
+    <label>Difficulty of questions:</label>
+    <select [(ngModel)]="difficulty">
+      <option value="">Select difficulty</option>
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    <button class="confirm-btn" (click)="quizService.playButton(); confirmDifficulty()">Confirm</button>
+  </div>
+
+  <div class="setting-group">
+    <label>Music?</label>
+    <button class="toggle-btn" (click)="quizService.playButton(); toggleMusic()">
+      {{ quizService.musicEnabled ? 'Disable' : 'Enable' }}
+    </button>
+  </div>
+
+  <div class="setting-group">
+    <label>Sound?</label>
+    <button class="toggle-btn" (click)="quizService.playButton(); toggleSound()">
+      {{ quizService.soundEnabled ? 'Disable' : 'Enable' }}
+    </button>
+  </div>
 
   <div class="bottom-buttons">
-    <button (click) = "toHome()" class="nav-btn">Home</button>
-    <button  (click) = "toLeaderboard()"class="nav-btn">Leaderboard</button>
+    <button class="nav-btn" (click)="quizService.playButton(); toHome()">Home</button>
+    <button id = "leaderboard-btn" (click)="quizService.playButton(); toLeaderboard()">Leaderboard</button>
   </div>
 </div>

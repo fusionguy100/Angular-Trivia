@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { QuizService } from '../../Services/quiz-service';
 @Component({
   selector: 'app-home-component',
   imports: [],
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, public quizService : QuizService) {}
 
 
   toSettings() {

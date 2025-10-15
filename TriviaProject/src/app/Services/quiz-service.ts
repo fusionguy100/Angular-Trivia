@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Howl, Howler } from 'howler';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,49 @@ export class QuizService {
   private difficulty: string = "easy"; //default value
 
   //audio settings
-  public musicEnabled = false;
-  public soundEnabled = false;
+  public musicEnabled = true;
+  public soundEnabled = true;
 
 
+  backgroundMusic = new Howl({
+    src: ['assets/sounds/elevator-music-jazz-lounge-419360.mp3'],
+    loop: true,
+    volume: 0.1
+  });
+
+  clickSound = new Howl({
+    src: ['assets/sounds/ui-sounds-pack-3-10-359727.mp3'],
+    volume: 0.7
+  });
+
+  clickButton = new Howl({
+    src: ['assets/sounds/computer-mouse-click-352734.mp3'],
+    volume: 0.7
+  });
+
+  playBackgroundMusic() {
+    if (this.musicEnabled && !this.backgroundMusic.playing()) {
+      this.backgroundMusic.play();
+    }
+  }
+
+  stopBackgroundMusic() {
+    if (this.backgroundMusic.playing()) {
+      this.backgroundMusic.stop();
+    }
+  }
+
+  playClick() {
+    if (this.soundEnabled) this.clickSound.play();
+  }
+
+  playButton() {
+    if (this.soundEnabled) this.clickButton.play();
+  }
 
   async getQuestions() {
     let url = `${this.baseUrl}amount=${this.numQuestions}&difficulty=${this.difficulty}&type=multiple`;
-    
+
     try {
 
       const response = await fetch(url, {
@@ -54,12 +90,6 @@ export class QuizService {
   return this.difficulty;
   }
 
-  toggleMusic() {
-    //skeleton
-  }
-  toggleSound(){
-    //skeleton
-  }
 
   // format the quiz text
   decodeHtmlEntities = (html: string): string =>

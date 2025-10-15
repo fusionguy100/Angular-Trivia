@@ -1,10 +1,10 @@
 <div class="home-container">
   <h1>Trivia Quiz Home Page</h1>
 
-  <button class="start-btn" (click)="toQuiz()">Start Quiz</button>
+  <button class="start-btn" (click)="quizService.playButton()"  (click)="toQuiz()">Start Quiz</button>
 
   <div class="bottom-buttons">
-    <button class="config-btn" (click)="toSettings()">Settings / Configuration</button>
-    <button class="leaderboard-btn" (click)="toLeaderboard()">Leaderboard</button>
+    <button class="config-btn"(click)="quizService.playButton()" (click)="toSettings()">Settings / Configuration</button>
+    <button id = "leaderboard-btn"(click)="quizService.playButton()" (click)="toLeaderboard()">Leaderboard</button>
   </div>
 </div>

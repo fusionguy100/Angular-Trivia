@@ -48,14 +48,17 @@ confirmQuestions() {
     }
   }
 
-  toggleMusic() {
-  this.quizService.toggleMusic();
-  alert(`Music ${this.quizService.musicEnabled ? 'enabled' : 'disabled'}`);
+toggleMusic() {
+  this.quizService.musicEnabled = !this.quizService.musicEnabled;
+  if (this.quizService.musicEnabled) {
+    this.quizService.playBackgroundMusic();
+  } else {
+    this.quizService.stopBackgroundMusic();
+  }
 }
 
 toggleSound() {
-  this.quizService.toggleSound();
-  alert(`Sound ${this.quizService.soundEnabled ? 'enabled' : 'disabled'}`);
+  this.quizService.soundEnabled = !this.quizService.soundEnabled;
 }
 
 

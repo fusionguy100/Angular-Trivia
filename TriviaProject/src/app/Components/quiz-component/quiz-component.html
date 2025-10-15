@@ -5,19 +5,19 @@
     <p>{{ question }}</p>
 
     <form>
-        <input type="radio" id="answer0" name="quizAnswer" [value]="answers[0]" [(ngModel)]="chosen">
+        <input type="radio" id="answer0" name="quizAnswer" [value]="answers[0]" [(ngModel)]="chosen" (change)="quizService.playClick()">
         <label for="answer0">{{ answers[0] }}</label>
         <br>
 
-        <input type="radio" id="answer1" name="quizAnswer" [value]="answers[1]" [(ngModel)]="chosen">
+        <input type="radio" id="answer1" name="quizAnswer" [value]="answers[1]" [(ngModel)]="chosen" (change)="quizService.playClick()">
         <label for="answer1">{{ answers[1] }}</label>
         <br>
 
-        <input type="radio" id="answer2" name="quizAnswer" [value]="answers[2]" [(ngModel)]="chosen">
+        <input type="radio" id="answer2" name="quizAnswer" [value]="answers[2]" [(ngModel)]="chosen" (change)="quizService.playClick()">
         <label for="answer2">{{ answers[2] }}</label>
         <br>
 
-        <input type="radio" id="answer3" name="quizAnswer" [value]="answers[3]" [(ngModel)]="chosen">
+        <input type="radio" id="answer3" name="quizAnswer" [value]="answers[3]" [(ngModel)]="chosen" (change)="quizService.playClick()">
         <label for="answer3">{{ answers[3] }}</label>
         <br>
     </form>
@@ -25,8 +25,8 @@
   </div>
 
   <div class="bottom-buttons">
-    <button class="previous-btn" (click)="previousQuestion()">Back</button>
-    <button class="next-btn" *ngIf="questions?.length && currentIndex < questions.length - 1" (click)="nextQuestion()">Next</button>
-    <button class="submit-btn" *ngIf="questions?.length && currentIndex === questions.length - 1" (click)="submitQuiz()">Submit</button>
+    <button class="previous-btn" (click)="quizService.playButton(); previousQuestion()">Back</button>
+    <button class="next-btn" (click)="quizService.playButton(); previousQuestion()" *ngIf="questions?.length && currentIndex < questions.length - 1" >Next</button>
+    <button class="submit-btn"  (click)="quizService.playButton(); previousQuestion()" *ngIf="questions?.length && currentIndex === questions.length - 1" >Submit</button>
   </div>
 </div>

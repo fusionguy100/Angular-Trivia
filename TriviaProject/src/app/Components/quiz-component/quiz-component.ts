@@ -18,17 +18,17 @@ export class QuizComponent implements OnInit {
 
   currentIndex = 0;
   question: string = "";
-  answers: string[] = []; 
+  answers: string[] = [];
   correct_answer: string = "";
   chosen: string = "";
   userChoices: string[] = [];
 
 
-  constructor(private quizService: QuizService) {}
-  
+  constructor(public quizService: QuizService) {}
+
   async ngOnInit() {
     this.questions = await this.quizService.getQuestions();
-    
+
     for (let question of this.questions) {
 
       // format all the text
