@@ -21,5 +21,8 @@ export class HomeComponent {
     this.router.navigate(['/leaderboard'])
   }
 
+  toQuiz() {
+    this.router.navigate(['/quiz']);
+  }
 
 }

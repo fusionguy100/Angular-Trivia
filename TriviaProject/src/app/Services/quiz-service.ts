@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { NgModel } from '@angular/forms';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class QuizService {
-  private baseUrl = 'https://opentdb.com/api.php?'
+  private baseUrl = 'https://opentdb.com/api.php?';
   public currentQuestions: any[] = [];
 
-  constructor (private http: HttpClient) {};
   private numQuestions: number = 10; //default value
-  private difficulty: string = "easy" //default value
-
+  private difficulty: string = "easy"; //default value
 
   //audio settings
   public musicEnabled = false;
@@ -21,9 +18,24 @@ export class QuizService {
 
 
 
-  getQuestions(amount:number,  difficulty?: string): Observable<any> {
-     let url = `${this.baseUrl}amount=${amount}&difficulty=${difficulty}&type=multiple`;
-      return this.http.get(url)
+  async getQuestions() {
+    let url = `${this.baseUrl}amount=${this.numQuestions}&difficulty=${this.difficulty}&type=multiple`;
+    
+    try {
+
+      const response = await fetch(url, {
+        method: "GET"
+      });
+
+      const data = await response.json();
+      this.currentQuestions = data.results;
+
+    } catch (error) {
+      console.error(error);
+      alert("Quiz failed to retrieve.");
+    }
+
+    return this.currentQuestions;
   }
 
   setNumQuestions(num: number): void {
@@ -48,4 +60,9 @@ export class QuizService {
   toggleSound(){
     //skeleton
   }
+
+  // format the quiz text
+  decodeHtmlEntities = (html: string): string =>
+    new DOMParser().parseFromString(html, 'text/html').documentElement.textContent || '';
+
 }
