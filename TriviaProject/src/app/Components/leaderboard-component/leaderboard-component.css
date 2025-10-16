@@ -1,0 +1,32 @@
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  background-color: white;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+li {
+    margin: 0 0 1rem 0;
+}
+
+button {
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  color: #222;
+  font-weight: bold;
+  border: none;
+  padding: 12px 35px;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  box-shadow: 0 0 15px rgba(255, 182, 193, 0.7);
+  transform: scale(1.05);
+}

@@ -5,8 +5,9 @@
     <div class="input-container">
 
         <label>Enter your username to submit your score to the highscores!</label>
-        <input type="text" [(ngModel)]="username" placeholder="placeholder"/>
-        <button class="submit-btn" (click)="toLeaderboard()">Submit</button>
+        <input type="text" [(ngModel)]="username" placeholder="..." required/>
+        <button class="submit-btn" (click)="toLeaderboard()" [disabled]="!username">Submit</button>
+        <button class="home-btn" (click)="toHome()">No Thanks Take Me Home</button>
 
     </div>
 

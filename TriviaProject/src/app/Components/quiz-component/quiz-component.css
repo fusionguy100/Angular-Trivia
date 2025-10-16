@@ -3,14 +3,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 50vh;
   background-color: white;
   text-align: center;
+  font-size: 1.5rem;
 }
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 40px;
+  font-size: 2rem;
+  margin-bottom: 1rem;
   color: black;
 }
 
@@ -48,4 +49,15 @@ button:hover,
 
 .bottom-buttons button {
   margin: 0 10px;
+}
+
+/* ----- */
+
+.answer {
+  margin: 0 0 1rem 0;
+}
+
+input[type="radio"] {
+  transform: scale(1.5); /* 1.0 = default size */
+  margin-right: 8px;     /* add spacing from label */
 }

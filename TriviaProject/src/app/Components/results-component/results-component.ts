@@ -19,7 +19,7 @@ export class ResultsComponent implements OnInit {
   score: number = 0;
   username: string = "";
 
-  constructor(private router: Router, private quizService: QuizService, private leaderboardService: LeaderboardService) {}
+  constructor(private router: Router, public quizService: QuizService, public leaderboardService: LeaderboardService) {}
 
   ngOnInit() {
     this.questions = this.quizService.getQuestions();
@@ -40,7 +40,13 @@ export class ResultsComponent implements OnInit {
   toLeaderboard() {
     this.leaderboardService.setPlayerData(this.username, this.score);
     this.leaderboardService.saveEntry();
-    this.router.navigate(['/leaderboard'])
+    this.quizService.playButton();
+    this.router.navigate(['/leaderboard']);
+  }
+
+  toHome() {
+    this.quizService.playButton();
+    this.router.navigate(['']);
   }
 
 }

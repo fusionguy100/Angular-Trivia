@@ -1,32 +1,36 @@
 <div class="quiz-container">
-  <h1>Question {{currentIndex + 1}}</h1>
+  <h1>Question {{currentIndex + 1}}/{{ questions.length }}</h1>
 
   <div class="question-container">
     <p>{{ question }}</p>
 
     <form>
-        <input type="radio" id="answer0" name="quizAnswer" [value]="answers[0]" [(ngModel)]="chosen" (change)="quizService.playClick()">
+      <div class="answer">
+        <input type="radio" id="answer0" name="quizAnswer" [value]="answers[0]" [(ngModel)]="chosen">
         <label for="answer0">{{ answers[0] }}</label>
-        <br>
+      </div>
 
-        <input type="radio" id="answer1" name="quizAnswer" [value]="answers[1]" [(ngModel)]="chosen" (change)="quizService.playClick()">
+      <div class="answer">
+        <input type="radio" id="answer1" name="quizAnswer" [value]="answers[1]" [(ngModel)]="chosen">
         <label for="answer1">{{ answers[1] }}</label>
-        <br>
+      </div>
 
-        <input type="radio" id="answer2" name="quizAnswer" [value]="answers[2]" [(ngModel)]="chosen" (change)="quizService.playClick()">
+      <div class="answer">
+        <input type="radio" id="answer2" name="quizAnswer" [value]="answers[2]" [(ngModel)]="chosen">
         <label for="answer2">{{ answers[2] }}</label>
-        <br>
+      </div>
 
-        <input type="radio" id="answer3" name="quizAnswer" [value]="answers[3]" [(ngModel)]="chosen" (change)="quizService.playClick()">
+      <div class="answer">
+        <input type="radio" id="answer3" name="quizAnswer" [value]="answers[3]" [(ngModel)]="chosen">
         <label for="answer3">{{ answers[3] }}</label>
-        <br>
+      </div>
     </form>
 
   </div>
 
   <div class="bottom-buttons">
-    <button class="previous-btn" (click)="quizService.playButton(); previousQuestion()">Back</button>
-    <button class="next-btn" (click)="quizService.playButton(); nextQuestion()" *ngIf="questions?.length && currentIndex < questions.length - 1" >Next</button>
-    <button class="submit-btn"  (click)="quizService.playButton(); submitQuiz()" *ngIf="questions?.length && currentIndex === questions.length - 1" >Submit</button>
+    <button class="previous-btn" (click)="this.quizService.playButton()" (click)="previousQuestion()">Back</button>
+    <button class="next-btn" *ngIf="questions?.length && currentIndex < questions.length - 1" (click)="this.quizService.playButton()" (click)="nextQuestion()">Next</button>
+    <button class="submit-btn" *ngIf="questions?.length && currentIndex === questions.length - 1" (click)="this.quizService.playButton()" (click)="submitQuiz()">Submit</button>
   </div>
 </div>
