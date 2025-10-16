@@ -1,2 +1,12 @@
-<p>leaderboard-component works!</p>
-<button (click)="toHome()">Back</button>
+<div class="leaderboard-container">
+
+    <h1>Leaderboard</h1>
+    <ol>
+        <li *ngFor="let entry of entries">
+            {{ entry.username }} - {{ entry.score }}
+        </li>
+    </ol>
+
+    <button id="home-btn" (click)="this.quizService.playButton()" (click)="toHome()">Home</button>
+
+</div>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { QuizService } from '../../Services/quiz-service'
+import { LeaderboardService } from '../../Services/leaderboard-service'
 
 @Component({
   selector: 'app-quiz-component',
@@ -24,10 +26,10 @@ export class QuizComponent implements OnInit {
   userChoices: string[] = [];
 
 
-  constructor(public quizService: QuizService) {}
+  constructor(private router: Router, public quizService: QuizService, public leaderboardService: LeaderboardService) {}
 
   async ngOnInit() {
-    this.questions = await this.quizService.getQuestions();
+    this.questions = await this.quizService.fetchQuestions();
 
     for (let question of this.questions) {
 
@@ -75,9 +77,12 @@ export class QuizComponent implements OnInit {
     this.currentQuestion();
   }
 
-  // TODO
   submitQuiz() {
-    alert("quiz submitted");
+    this.userChoices[this.currentIndex] = this.chosen;
+
+    this.quizService.setQuestions(this.questions);
+    this.quizService.setChoices(this.userChoices);
+    this.router.navigate(['/results']);
   }
 
 }

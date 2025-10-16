@@ -9,6 +9,7 @@ import { Howl, Howler } from 'howler';
 export class QuizService {
   private baseUrl = 'https://opentdb.com/api.php?';
   public currentQuestions: any[] = [];
+  public userChoices: any[] = [];
 
   private numQuestions: number = 10; //default value
   private difficulty: string = "easy"; //default value
@@ -54,7 +55,9 @@ export class QuizService {
     if (this.soundEnabled) this.clickButton.play();
   }
 
-  async getQuestions() {
+  // -----------------------------------
+
+  async fetchQuestions() {
     let url = `${this.baseUrl}amount=${this.numQuestions}&difficulty=${this.difficulty}&type=multiple`;
 
     try {
@@ -74,6 +77,14 @@ export class QuizService {
     return this.currentQuestions;
   }
 
+  setQuestions(currentQuestions: any[]) {
+    this.currentQuestions = currentQuestions;
+  }
+
+  getQuestions() {
+    return this.currentQuestions;
+  }
+
   setNumQuestions(num: number): void {
     this.numQuestions = num;
   }
@@ -88,6 +99,14 @@ export class QuizService {
 
   getDifficulty(): string {
   return this.difficulty;
+  }
+
+  setChoices(userChoices: any[]) {
+    this.userChoices = userChoices;
+  }
+
+  getChoices(): any[] {
+    return this.userChoices;
   }
 
 
