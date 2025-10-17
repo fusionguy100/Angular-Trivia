@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +9,15 @@ export class QuizService {
   public currentQuestions: any[] = [];
   public userChoices: any[] = [];
 
-  private numQuestions: number = 10; //default value
-  private difficulty: string = "easy"; //default value
+  private numQuestions: number = 10;
+  private difficulty: string = 'easy';
 
-  //audio settings
   public musicEnabled = true;
   public soundEnabled = true;
 
+  constructor() {
+    this.loadSettings();
+  }
 
   backgroundMusic = new Howl({
     src: ['assets/sounds/Main Theme - Hong Kong 97.mp3'],
@@ -36,15 +36,11 @@ export class QuizService {
   });
 
   playBackgroundMusic() {
-    if (this.musicEnabled && !this.backgroundMusic.playing()) {
-      this.backgroundMusic.play();
-    }
+    if (this.musicEnabled && !this.backgroundMusic.playing()) this.backgroundMusic.play();
   }
 
   stopBackgroundMusic() {
-    if (this.backgroundMusic.playing()) {
-      this.backgroundMusic.stop();
-    }
+    if (this.backgroundMusic.playing()) this.backgroundMusic.stop();
   }
 
   playClick() {
@@ -55,25 +51,16 @@ export class QuizService {
     if (this.soundEnabled) this.clickButton.play();
   }
 
-  // -----------------------------------
-
   async fetchQuestions() {
-    let url = `${this.baseUrl}amount=${this.numQuestions}&difficulty=${this.difficulty}&type=multiple`;
-
+    const url = `${this.baseUrl}amount=${this.numQuestions}&difficulty=${this.difficulty}&type=multiple`;
     try {
-
-      const response = await fetch(url, {
-        method: "GET"
-      });
-
+      const response = await fetch(url);
       const data = await response.json();
       this.currentQuestions = data.results;
-
     } catch (error) {
       console.error(error);
-      alert("Quiz failed to retrieve.");
+      alert('Quiz failed to retrieve.');
     }
-
     return this.currentQuestions;
   }
 
@@ -87,18 +74,20 @@ export class QuizService {
 
   setNumQuestions(num: number): void {
     this.numQuestions = num;
+    this.saveSettings();
   }
 
   getNumQuestions(): number {
     return this.numQuestions;
   }
 
-  setDifficulty(dif: string): void  {
+  setDifficulty(dif: string): void {
     this.difficulty = dif;
+    this.saveSettings();
   }
 
   getDifficulty(): string {
-  return this.difficulty;
+    return this.difficulty;
   }
 
   setChoices(userChoices: any[]) {
@@ -109,9 +98,50 @@ export class QuizService {
     return this.userChoices;
   }
 
+  toggleMusic() {
+    this.musicEnabled = !this.musicEnabled;
+    this.saveSettings();
+    if (this.musicEnabled) this.playBackgroundMusic();
+    else this.stopBackgroundMusic();
+  }
 
-  // format the quiz text
+  toggleSound() {
+    this.soundEnabled = !this.soundEnabled;
+    this.saveSettings();
+  }
+
+
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+  }
+
+  private saveSettings() {
+    if (!this.isBrowser()) return;
+    const settings = {
+      numQuestions: this.numQuestions,
+      difficulty: this.difficulty,
+      musicEnabled: this.musicEnabled,
+      soundEnabled: this.soundEnabled
+    };
+    localStorage.setItem('quizSettings', JSON.stringify(settings));
+  }
+
+  private loadSettings() {
+    if (!this.isBrowser()) return;
+    const saved = localStorage.getItem('quizSettings');
+    if (saved) {
+      try {
+        const { numQuestions, difficulty, musicEnabled, soundEnabled } = JSON.parse(saved);
+        this.numQuestions = numQuestions ?? 10;
+        this.difficulty = difficulty ?? 'easy';
+        this.musicEnabled = musicEnabled ?? true;
+        this.soundEnabled = soundEnabled ?? true;
+      } catch (e) {
+        console.warn('Error loading settings:', e);
+      }
+    }
+  }
+
   decodeHtmlEntities = (html: string): string =>
     new DOMParser().parseFromString(html, 'text/html').documentElement.textContent || '';
-
 }

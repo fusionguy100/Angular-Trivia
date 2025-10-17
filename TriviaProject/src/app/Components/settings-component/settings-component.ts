@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../Services/quiz-service';
 import { FormsModule } from '@angular/forms';
@@ -9,37 +9,44 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './settings-component.html',
   styleUrl: './settings-component.css'
 })
-
-export class SettingsComponent {
-
-  constructor(private router: Router, public quizService: QuizService) {}
+export class SettingsComponent implements OnInit {
 
   numQuestions: number | null = null;
   difficulty: string = '';
+  musicEnabled: boolean = true;
+  soundEnabled: boolean = true;
 
-toHome() {
- this.router.navigate([''])
-}
+  constructor(private router: Router, public quizService: QuizService) {}
 
-toLeaderboard() {
- this.router.navigate(['/leaderboard'])
-}
+  ngOnInit() {
 
-confirmQuestions() {
-  const amount = Number(this.numQuestions);
-
-  if (amount > 0 && amount <= 50) {
-    this.quizService.setNumQuestions(amount);
-    alert(`Number of questions set to ${amount}`);
-  } else {
-    alert('Please enter a valid number of questions (1–50).');
+    this.numQuestions = this.quizService.getNumQuestions();
+    this.difficulty = this.quizService.getDifficulty();
+    this.musicEnabled = this.quizService.musicEnabled;
+    this.soundEnabled = this.quizService.soundEnabled;
   }
-}
+
+  toHome() {
+    this.router.navigate(['']);
+  }
+
+  toLeaderboard() {
+    this.router.navigate(['/leaderboard']);
+  }
+
+  confirmQuestions() {
+    const amount = Number(this.numQuestions);
+    if (amount > 0 && amount <= 50) {
+      this.quizService.setNumQuestions(amount);
+      alert(`Number of questions set to ${amount}`);
+    } else {
+      alert('Please enter a valid number of questions (1–50).');
+    }
+  }
 
   confirmDifficulty() {
     const valid = ['easy', 'medium', 'hard'];
     const diff = this.difficulty.toLowerCase();
-
     if (valid.includes(diff)) {
       this.quizService.setDifficulty(diff);
       alert(`Difficulty set to ${diff}`);
@@ -48,18 +55,13 @@ confirmQuestions() {
     }
   }
 
-toggleMusic() {
-  this.quizService.musicEnabled = !this.quizService.musicEnabled;
-  if (this.quizService.musicEnabled) {
-    this.quizService.playBackgroundMusic();
-  } else {
-    this.quizService.stopBackgroundMusic();
+  toggleMusic() {
+    this.quizService.toggleMusic();
+    this.musicEnabled = this.quizService.musicEnabled;
   }
-}
 
-toggleSound() {
-  this.quizService.soundEnabled = !this.quizService.soundEnabled;
-}
-
-
+  toggleSound() {
+    this.quizService.toggleSound();
+    this.soundEnabled = this.quizService.soundEnabled;
+  }
 }
