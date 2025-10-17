@@ -20,9 +20,9 @@ export class QuizService {
 
 
   backgroundMusic = new Howl({
-    src: ['assets/sounds/Main Theme - Hong Kong 97.mp3'],
+    src: ['assets/sounds/elevator-music-jazz-lounge-419360.mp3'],
     loop: true,
-    volume: 0.4
+    volume: 0.2
   });
 
   clickSound = new Howl({

@@ -1,12 +1,13 @@
 <div class="leaderboard-container">
-
+  <div class="leaderboard-card">
     <h1>Leaderboard</h1>
+
     <ol>
-        <li *ngFor="let entry of entries">
-            {{ entry.username }} - {{ entry.score }}%
-        </li>
+      <li *ngFor="let entry of entries">
+        {{ entry.username }} - {{ entry.score }}%
+      </li>
     </ol>
 
-    <button id="home-btn" (click)="this.quizService.playButton()" (click)="toHome()">Home</button>
-
+    <button id="home-btn" (click)="quizService.playButton(); toHome()">Home</button>
+  </div>
 </div>

@@ -4,16 +4,34 @@
   align-items: center;
   justify-content: start;
   height: 100vh;
-  background-color: white;
+  background: linear-gradient(135deg, #ffe8e8 0%, #fff5e1 100%);
   text-align: center;
   padding-top: 40px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.settings-card {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 40px 60px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 30px;
-  color: black;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #222;
+  letter-spacing: 0.5px;
 }
 
 .setting-group {
@@ -28,13 +46,21 @@ label {
   margin-bottom: 8px;
 }
 
-input {
-  width: 200px;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid gray;
-  border-radius: 4px;
+input,
+select {
+  width: 220px;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(255, 182, 193, 0.7);
 }
 
 button,
@@ -55,7 +81,6 @@ button,
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-
 button:hover,
 .confirm-btn:hover,
 .toggle-btn:hover,
@@ -67,7 +92,7 @@ button:hover,
 
 .bottom-buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 60%;
   position: absolute;
   bottom: 30px;

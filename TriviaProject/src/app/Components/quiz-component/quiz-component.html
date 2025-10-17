@@ -6,22 +6,22 @@
 
     <form>
       <div class="answer">
-        <input type="radio" id="answer0" name="quizAnswer" [value]="answers[0]" [(ngModel)]="chosen">
+        <input type="radio" id="answer0" name="quizAnswer" (change)="quizService.playClick()" [value]="answers[0]" [(ngModel)]="chosen"  >
         <label for="answer0">{{ answers[0] }}</label>
       </div>
 
       <div class="answer">
-        <input type="radio" id="answer1" name="quizAnswer" [value]="answers[1]" [(ngModel)]="chosen">
+        <input type="radio" id="answer1" name="quizAnswer" (change)="quizService.playClick()" [value]="answers[1]" [(ngModel)]="chosen">
         <label for="answer1">{{ answers[1] }}</label>
       </div>
 
       <div class="answer">
-        <input type="radio" id="answer2" name="quizAnswer" [value]="answers[2]" [(ngModel)]="chosen">
+        <input type="radio" id="answer2" name="quizAnswer"(change)="quizService.playClick()" [value]="answers[2]" [(ngModel)]="chosen">
         <label for="answer2">{{ answers[2] }}</label>
       </div>
 
       <div class="answer">
-        <input type="radio" id="answer3" name="quizAnswer" [value]="answers[3]" [(ngModel)]="chosen">
+        <input type="radio" id="answer3" name="quizAnswer"  (change)="quizService.playClick()" [value]="answers[3]" [(ngModel)]="chosen">
         <label for="answer3">{{ answers[3] }}</label>
       </div>
     </form>
