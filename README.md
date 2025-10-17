@@ -7,12 +7,12 @@ Users can choose the number of questions and difficulty level, play trivia round
 
 ##  Features
 
-- 🎮 **Dynamic Quiz Gameplay** – Fetches trivia questions from the [Open Trivia Database API](https://opentdb.com/).
-- ⚙️ **Settings Page** – Customize number of questions (1–50) and difficulty (easy, medium, hard).
-- 🔊 **Audio Integration** – Background music and click sounds using the `Howler.js` library.
-- 🏆 **Leaderboard** – Displays players’ usernames and high scores (stored locally).
-- 📱 **Responsive Design** – Fully functional across devices and screen sizes.
-- 🌐 **Routing** – Uses Angular Router for navigation between Home, Settings, Game, Results, and Leaderboard.
+- **Dynamic Quiz Gameplay** – Fetches trivia questions from the [Open Trivia Database API](https://opentdb.com/).
+-  **Settings Page** – Customize number of questions (1–50) and difficulty (easy, medium, hard).
+-  **Audio Integration** – Background music and click sounds using the `Howler.js` library.
+-  **Leaderboard** – Displays players’ usernames and high scores (stored locally).
+-  **Responsive Design** – Fully functional across devices and screen sizes.
+-  **Routing** – Uses Angular Router for navigation between Home, Settings, Game, Results, and Leaderboard.
 
 ---
 
