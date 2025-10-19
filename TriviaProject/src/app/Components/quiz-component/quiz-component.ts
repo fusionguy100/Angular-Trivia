@@ -57,6 +57,7 @@ export class QuizComponent implements OnInit {
     this.question = this.questions[this.currentIndex]["question"];
     this.answers = this.questions[this.currentIndex]["answers"];
     this.chosen = this.userChoices[this.currentIndex];
+    console.log("Correct answer:" + this.correct_answer);
   }
 
   nextQuestion() {
