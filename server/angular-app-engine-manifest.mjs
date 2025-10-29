@@ -1,6 +1,6 @@
 
 export default {
-  basePath: 'https://fusionguy100.github.io/triviaproject',
+  basePath: 'https://fusionguy100.github.io/Angular-Trivia',
   supportedLocales: {
   "en-US": ""
 },

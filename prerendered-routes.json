@@ -1,9 +1,9 @@
 {
   "routes": {
-    "/triviaproject": {},
-    "/triviaproject/leaderboard": {},
-    "/triviaproject/quiz": {},
-    "/triviaproject/results": {},
-    "/triviaproject/settings": {}
+    "/Angular-Trivia": {},
+    "/Angular-Trivia/leaderboard": {},
+    "/Angular-Trivia/quiz": {},
+    "/Angular-Trivia/results": {},
+    "/Angular-Trivia/settings": {}
   }
 }
